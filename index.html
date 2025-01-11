@@ -544,12 +544,16 @@
 
   <section id="contact" class="container" data-aos="fade-up">
     <h2 class="section-title">Contact Me</h2>
-    <form class="contact-form" action="send_email.php" method="post">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
+    <form action="https://api.web3forms.com/submit" method="POST">
+
+      <input type="hidden" name="access_key" value="ed454103-bf4e-4890-af5c-370fac617666">
+  
+      <input type="text" name="name" required>
+      <input type="email" name="email" required>
+      <textarea name="message" required></textarea>
+      <button type="submit">Submit Form</button>
+  
+  </form>
     <div class="social-links">
       <a href="https://linkedin.com/in/dengayuenkur" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
       <a href="https://github.com/dengayuenkur" title="GitHub"><i class="fab fa-github"></i></a>
