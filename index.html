@@ -1,0 +1,539 @@
+<html><head><base href="/#">
+  <title>Deng Ayuen Kur - Cybersecurity Professional</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 100 100&apos;&gt;&lt;text y=&apos;.9em&apos; font-size=&apos;90&apos;&gt;&#x1f512;&lt;/text&gt;&lt;/svg&gt;">
+
+  <style>
+    :root {
+      --primary: #000000;
+      --secondary: #00ff00;
+      --text: #ffffff;
+      --background: #111111;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.9);
+      padding: 1rem 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      padding-top: 2rem;
+    }
+
+    .hero-text {
+      flex: 1;
+      padding-top: 2rem;
+      text-align: left;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 90%;
+      line-height: 1.8;
+      margin-top: 1.5rem;
+      text-align: justify;
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-container {
+      width: 300px;
+      height: 350px;
+      position: relative;
+      border-radius: 0;
+      background: linear-gradient(45deg, var(--secondary), transparent);
+      padding: 4px;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      object-fit: contain;
+      background: var(--background);
+      object-position: center top;
+    }
+
+    /* Education Timeline */
+    .education {
+      margin: 2rem 0;
+    }
+
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline-item {
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+      border-left: 2px solid var(--secondary);
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background: var(--secondary);
+      border-radius: 50%;
+    }
+
+    .timeline-date {
+      color: var(--secondary);
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--secondary);
+    }
+
+    .project-card h3 {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .project-links {
+      margin-top: 1rem;
+    }
+
+    .project-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .skill-card h3 {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .skill-card ul {
+      list-style-type: none;
+    }
+
+    .skill-card li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .skill-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+
+    button {
+      background: var(--secondary);
+      color: var(--primary);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: opacity 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      color: var(--text);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--secondary);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0,0,0,0.8);
+      padding: 2rem 0;
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-content {
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 1rem;
+        text-align: left;
+      }
+
+      .hero-text {
+        padding-top: 0;
+        text-align: left;
+      }
+
+      .hero-text p {
+        max-width: 100%;
+        margin: 1rem 0;
+        text-align: justify;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .profile-container {
+        width: 250px;
+        height: 300px;
+        margin: 2rem auto 0;
+      }
+
+      .timeline-item {
+        padding-left: 1rem;
+      }
+    }
+
+    /* About Section */
+    #about.container p {
+      text-align: justify;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-content">
+      <a href="#" class="logo">DK</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <div class="hero-text" data-aos="fade-right">
+        <h1>Deng Ayuen Kur</h1>
+        <p>A dynamic cybersecurity professional with a strong foundation in software engineering and hands-on experience in network security, web application security, mobile and Digital Forensics. Proven ability to adapt quickly to new challenges and environments, underscored by commitment to continuous learning and professional growth. Aiming to leverage academic expertise and practical training to contribute to innovative cybersecurity solutions and strengthen organizational defenses.</p>
+      </div>
+      <div class="hero-image" data-aos="fade-left">
+        <div class="profile-container">
+          <img src="/Photo.jpg" alt="Deng Ayuen Kur" class="profile-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="container" data-aos="fade-up">
+    <h2 class="section-title">About Me</h2>
+    <p>A South Sudanese Software and Cybersecurity Engineer with a passion for building secure and efficient applications. Skilled in Python, C, C++, AWS. Experienced in penetration testing, vulnerability assessment, incident response, mobile cybersecurity and digital forensics.</p>
+  </section>
+
+  <section id="education" class="container" data-aos="fade-up">
+    <h2 class="section-title">Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">Aug, 2024 - Aug, 2026 (On-going)</div>
+        <h3>M.Sc. Cybersecurity</h3>
+        <p>National Forensic Sciences University, Gujarat, India</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Jul, 2019 - Jul, 2023</div>
+        <h3>B.Tech, Software Engineering</h3>
+        <p>Delhi Technological University, New Delhi, India</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Jul, 2020 - Jul, 2023</div>
+        <h3>Minor in Data Analytics</h3>
+        <p>Delhi Technological University, New Delhi, India</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Feb, 2014 - Feb, 2018</div>
+        <h3>Certificate of Secondary Education</h3>
+        <p>Bor College High School, Bor, South Sudan</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Feb, 2005 - Feb, 2013</div>
+        <h3>Certificate of Primary Education</h3>
+        <p>Langbaar Mixed Primary School, Bor, South Sudan</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="container" data-aos="fade-up">
+    <h2 class="section-title">Skills &amp; Expertise</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Security</h3>
+        <ul>
+          <li>Penetration Testing</li>
+          <li>Incident Response</li>
+          <li>Digital Forensics</li>
+          <li>Malware Analysis</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Programming</h3>
+        <ul>
+          <li>Python</li>
+          <li>C/C++</li>
+          <li>Bash</li>
+          <li>PowerShell</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Infrastructure</h3>
+        <ul>
+          <li>Network Security</li>
+          <li>OS Security</li>
+          <li>Information Security</li>
+          <li>AWS Cloud</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="container" data-aos="fade-up">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Car Price Prediction</h3>
+        <p>Developed a predictive model for car prices using machine learning techniques and Python.</p>
+        <div class="project-links">
+          <a href="https://github.com/dengayuenkur/car-price-prediction">View on GitHub <i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>OpenSSL Server</h3>
+        <p>Created a secure server implementation using OpenSSL to display current day and time data.</p>
+        <div class="project-links">
+          <a href="https://github.com/dengayuenkur/openssl-server">View on GitHub <i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>Student Database Management</h3>
+        <p>Developed a comprehensive database system for managing student information with security features.</p>
+        <div class="project-links">
+          <a href="https://github.com/dengayuenkur/student-db">View on GitHub <i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>Phishing URL Detection</h3>
+        <p>Implemented machine learning algorithms to detect and classify phishing URLs for improved security.</p>
+        <div class="project-links">
+          <a href="https://github.com/dengayuenkur/phishing-detection">View on GitHub <i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container" data-aos="fade-up">
+    <h2 class="section-title">Contact Me</h2>
+    <form class="contact-form">
+      <div class="form-group">
+        <input type="text" placeholder="Name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Message" rows="5" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/dengayuenkur" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/dengayuenkur" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://instagram.com/dengayuenkur" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com/dengayuenkur" title="Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p> 2025 Deng Ayuen Kur. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>AOS.init({
+  duration: 1000,
+  once: true,
+  offset: 100
+});
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+document.querySelector('.contact-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  alert('Thank you for your message! I will get back to you soon.');
+  this.reset();
+});</script>
+</body>
+</html>
