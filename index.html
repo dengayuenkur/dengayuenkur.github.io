@@ -62,6 +62,7 @@
     .nav-links {
       display: flex;
       gap: 2rem;
+      transition: all 0.3s ease;
     }
 
     .nav-links a {
@@ -315,6 +316,17 @@
       text-align: center;
     }
 
+    /* Mobile Menu Button */
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       .hero-content {
@@ -336,7 +348,34 @@
       }
 
       .nav-links {
-        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        padding: 1rem 0;
+        gap: 1rem;
+        text-align: center;
+        transform: translateY(-150%);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.5rem 0;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 120px;
       }
 
       .profile-container {
@@ -361,6 +400,9 @@
   <nav>
     <div class="container nav-content">
       <a href="#" class="logo">DK</a>
+      <button class="menu-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
       <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -534,6 +576,28 @@ document.querySelector('.contact-form').addEventListener('submit', function (e) 
   e.preventDefault();
   alert('Thank you for your message! I will get back to you soon.');
   this.reset();
+});
+const menuBtn = document.querySelector('.menu-btn');
+const navLinks = document.querySelector('.nav-links');
+menuBtn.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  if (navLinks.classList.contains('active')) {
+    menuBtn.innerHTML = '<i class="fas fa-times"></i>';
+  } else {
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  }
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  });
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-content')) {
+    navLinks.classList.remove('active');
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  }
 });</script>
 </body>
 </html>
