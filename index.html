@@ -310,7 +310,7 @@
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 1rem;
       margin-top: 2rem;
     }
 
@@ -482,6 +482,33 @@
       text-align: justify;
       margin: 1rem 0;
     }
+
+    .contact-section {
+      padding: 4rem 0;
+      background: var(--background);
+      color: var(--text);
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      margin-bottom: 2rem;
+    }
+
+    .contact-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      background: var(--secondary);
+      color: var(--text);
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .contact-button:hover {
+      background: var(--primary);
+    }
   </style>
 </head>
 <body>
@@ -498,7 +525,7 @@
         <a href="#education">Education</a>
         <a href="#services">Services</a>
         <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#connect">Connect</a>
       </div>
     </div>
   </nav>
@@ -521,7 +548,7 @@
 
   <section id="about" class="container" data-aos="fade-up">
     <h2 class="section-title">....</h2>
-    <p>Currently pursuing a Master’s in Cybersecurity from National Forensic Sciences University, Gujarat, India, I bring technical expertise and a proactive approaches to solving cybersecurity challenges. My journey is driven by a commitment to protecting technology ecosystems through innovative and robust solutions..</p>
+    <p>Currently pursuing a Master’s in Cybersecurity from National Forensic Sciences University, Gujarat, India, I bring technical expertise and a proactive approaches to solving cybersecurity challenges. My journey is driven by a commitment to protecting technological ecosystems through innovative and robust solutions..</p>
   </section>
 
   <section id="education" class="container" data-aos="fade-up">
@@ -567,7 +594,7 @@
           <li>Malware Analysis</li>
           <li>Web Application Security</li>
           <li>Mobile Security</li>
-          <li>Data Protection and Data Loss Recovery</li>
+          <li>Data Protection, Data Loss Prevention and Recovery</li>
         </ul>
       </div>
       <div class="service-card">
@@ -587,6 +614,7 @@
           <li>Information Security</li>
           <li>AWS Cloud</li>
           <li>Linux and Windows Security</li>
+          <li>Tech Consultancy and Corporate Training</li>
         
           
         </ul>
@@ -630,20 +658,19 @@
     </div>
   </section>
 
-  <section id="contact" class="container" data-aos="fade-up">
-    <h2 class="section-title">Ready to collaborate? Let’s make things secure., contact me NOW!</h2>
-    <form class="contact-form" action="send_email.php" method="post">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-    <div class="social-links">
-      <a href="https://linkedin.com/in/dengayuenkur" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/dengayuenkur" title="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://instagram.com/dengayuenkur" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://facebook.com/iamdengayuenkur" title="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="https://x.com/dengayuenkur" title="x"><i class="fab fa-x"></i></a>
+  <section id="connect" class="connect-section">
+    <div class="container">
+      <h2>Ready to collaborate? Let’s make things secure.</h2>
+      <a href="mailto:dengayuen2018@gmail.com" class="contact-button">Click to request a Service Now</a>
+      <div class="social-links">
+        <p>Connect on</p>
+        <a href="https://github.com/dengayuenkur" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/dengayuenkur" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.x.com/dengayuenkur" target="_blank"><i class="fab fa-x"></i></a>
+        <a href="https://www.instagram.com/dengayuenkur" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/iamdengayuenkur" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        
+      </div>
     </div>
   </section>
 
