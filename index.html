@@ -85,7 +85,7 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      padding-top: 80px;
+      padding-top: 60px;
     }
 
     .hero-content {
@@ -330,7 +330,25 @@
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+    @media (max-width: 1920px) {
+      .container {
+        max-width: 1400px;
+      }
+    }
+
+    @media (max-width: 1536px) {
+      .container {
+        max-width: 1200px;
+      }
+    }
+
+    @media (max-width: 1366px) {
+      .container {
+        max-width: 1000px;
+      }
+    }
+
+    @media (max-width: 1024px) {
       .hero-content {
         flex-direction: column;
         gap: 2rem;
@@ -400,6 +418,51 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .hero-text h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .profile-container {
+        width: 200px;
+        height: 250px;
+      }
+    }
+
+    @media (max-width: 414px) {
+      .hero-text h1 {
+        font-size: 1.2rem;
+      }
+
+      .hero-text p {
+        font-size: 0.9rem;
+      }
+
+      .profile-container {
+        width: 180px;
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero-text h1 {
+        font-size: 1.2rem;
+      }
+
+      .hero-text p {
+        font-size: 0.9rem;
+      }
+
+      .profile-container {
+        width: 180px;
+        height: 220px;
+      }
+    }
+
     /* About Section */
     #about.container p {
       text-align: justify;
@@ -410,7 +473,7 @@
 <body>
   <nav>
     <div class="container nav-content">
-      <a href="#" class="logo">DK</a>
+      <a href="#" class="logo">DAK</a>
       <button class="menu-btn" aria-label="Toggle menu">
         <i class="fas fa-bars"></i>
       </button>
@@ -428,7 +491,7 @@
   <section id="home" class="hero">
     <div class="container hero-content">
       <div class="hero-text" data-aos="fade-right">
-        <h1>Hi, I'm Deng Ayuen Kur</h1>
+        <h1>Hi, I'm Deng Ayuen Kur.</h1>
         <p>A dynamic cybersecurity professional with a strong foundation in software engineering and hands-on experience in network security, web application security, mobile and Digital Forensics. Proven ability to adapt quickly to new challenges and environments, underscored by commitment to continuous learning and professional growth. Aiming to leverage academic expertise and practical training to contribute to innovative cybersecurity solutions and strengthen organizational defenses.</p>
       </div>
       <div class="hero-image" data-aos="fade-left">
@@ -440,8 +503,8 @@
   </section>
 
   <section id="about" class="container" data-aos="fade-up">
-    <h2 class="section-title">About Me</h2>
-    <p>A South Sudanese Software and Cybersecurity Engineer with a passion for building secure and efficient applications. Skilled in Python, C, C++, AWS. Experienced in penetration testing, vulnerability assessment, incident response, mobile cybersecurity and digital forensics.</p>
+    <h2 class="section-title">Who I am.</h2>
+    <p>While I am currently pursuing a Master’s in Cybersecurity from National Forensic Sciences University, Gujarat, India, I bring technical expertise and a proactive approaches to solving cybersecurity challenges. My journey is driven by a commitment to protecting technology ecosystems through innovative and robust solutions..</p>
   </section>
 
   <section id="education" class="container" data-aos="fade-up">
@@ -514,6 +577,7 @@
       <div class="project-card">
         <h3>Car Price Prediction</h3>
         <p>Developed a predictive model for car prices using machine learning techniques and Python.</p>
+        <p>Tools/Tech: Python, Flask, NumPy, Pandas</p>
         <div class="project-links">
           <a href="https://github.com/dengayuenkur/car-price-prediction">View on GitHub <i class="fab fa-github"></i></a>
         </div>
@@ -521,6 +585,7 @@
       <div class="project-card">
         <h3>OpenSSL Server</h3>
         <p>Created a secure server implementation using OpenSSL to display current day and time data.</p>
+        <p>Tools/Tech: OpenSSL, Bash, Linux</p>
         <div class="project-links">
           <a href="https://github.com/dengayuenkur/openssl-server">View on GitHub <i class="fab fa-github"></i></a>
         </div>
@@ -528,6 +593,7 @@
       <div class="project-card">
         <h3>Student Database Management</h3>
         <p>Developed a comprehensive database system for managing student information with security features.</p>
+        <p>Tools/Tech: C++, MySQL</p>
         <div class="project-links">
           <a href="https://github.com/dengayuenkur/student-db">View on GitHub <i class="fab fa-github"></i></a>
         </div>
@@ -535,6 +601,7 @@
       <div class="project-card">
         <h3>Phishing URL Detection</h3>
         <p>Implemented machine learning algorithms to detect and classify phishing URLs for improved security.</p>
+        <p>Tools/Tech: Python, Scikit-learn</p>
         <div class="project-links">
           <a href="https://github.com/dengayuenkur/phishing-detection">View on GitHub <i class="fab fa-github"></i></a>
         </div>
