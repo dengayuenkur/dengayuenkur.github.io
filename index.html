@@ -29,6 +29,20 @@
       background: var(--background);
       color: var(--text);
       line-height: 1.6;
+      position: relative;
+    }
+
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/cyberimage.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1; /* Adjust the opacity as needed */
+      z-index: -1; /* Ensure the image is behind other content */
     }
 
     .container {
@@ -471,6 +485,7 @@
   </style>
 </head>
 <body>
+  <div class="background-image"></div>
   <nav>
     <div class="container nav-content">
       <a href="#" class="logo">DAK</a>
@@ -492,7 +507,9 @@
     <div class="container hero-content">
       <div class="hero-text" data-aos="fade-right">
         <h1>Hi, I'm Deng Ayuen Kur.</h1>
-        <p>A dynamic cybersecurity professional with a strong foundation in software engineering and hands-on experience in network security, web application security, mobile and Digital Forensics. Proven ability to adapt quickly to new challenges and environments, underscored by commitment to continuous learning and professional growth. Aiming to leverage academic expertise and practical training to contribute to innovative cybersecurity solutions and strengthen organizational defenses.</p>
+        <p>A South Sudanese dynamic cybersecurity professional with a strong foundation in software engineering and hands-on experience in network security, web application security, mobile and Digital Forensics. 
+         Aiming to leverage academic expertise and practical training to contribute to innovative cybersecurity solutions and strengthen organizational defenses. Posses a proven ability to adapt quickly to new challenges and environments, underscored by 
+         commitment to continuous learning and professional growth.</p>
       </div>
       <div class="hero-image" data-aos="fade-left">
         <div class="profile-container">
@@ -503,7 +520,7 @@
   </section>
 
   <section id="about" class="container" data-aos="fade-up">
-    <h2 class="section-title">Who I am.</h2>
+    <h2 class="section-title">....</h2>
     <p>While I am currently pursuing a Master’s in Cybersecurity from National Forensic Sciences University, Gujarat, India, I bring technical expertise and a proactive approaches to solving cybersecurity challenges. My journey is driven by a commitment to protecting technology ecosystems through innovative and robust solutions..</p>
   </section>
 
@@ -548,6 +565,9 @@
           <li>Incident Response</li>
           <li>Digital Forensics</li>
           <li>Malware Analysis</li>
+          <li>Web Application Security</li>
+          <li>Mobile Security</li>
+          <li>Data Protection and Data Loss Recovery</li>
         </ul>
       </div>
       <div class="skill-card">
@@ -566,6 +586,9 @@
           <li>OS Security</li>
           <li>Information Security</li>
           <li>AWS Cloud</li>
+          <li>Linux and Windows Security</li>
+        
+          
         </ul>
       </div>
     </div>
@@ -610,7 +633,7 @@
   </section>
 
   <section id="contact" class="container" data-aos="fade-up">
-    <h2 class="section-title">Contact Me</h2>
+    <h2 class="section-title">Ready to collaborate? Let’s make things secure., contact me NOW!</h2>
     <form class="contact-form" action="send_email.php" method="post">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
@@ -628,7 +651,10 @@
 
   <footer>
     <div class="container">
-      <p> 2025 Deng Ayuen Kur. All rights reserved.</p>
+      <p> ©2025 DAK. All rights reserved.</p>
+      <p> "Thanks for scrolling! Security starts with awareness.."</p>
+      <p> Built by Deng Ayuen Kur.</p>
+
     </div>
   </footer>
 
