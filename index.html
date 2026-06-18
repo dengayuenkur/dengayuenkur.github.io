@@ -1,64 +1,106 @@
-<html><head><base href="/#">
+<html>
+<head>
+  <base href="/#">
   <title>Deng Ayuen Kur - Cybersecurity Professional</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
   <style>
     :root {
-      --primary: #000000;
-      --secondary: #00ff00;
-      --text: #ffffff;
-      --background: #111111;
+      --primary:      #0a0a0f;
+      --secondary:    #00ff41;
+      --accent:       #00d4ff;
+      --accent2:      #ff0055;
+      --text:         #c9d1d9;
+      --text-dim:     #8b949e;
+      --card-bg:      rgba(0, 255, 65, 0.02);
+      --card-border:  rgba(0, 255, 65, 0.15);
+      --glow:         0 0 8px rgba(0,255,65,0.6), 0 0 20px rgba(0,255,65,0.3), 0 0 40px rgba(0,255,65,0.1);
+      --glow-cyan:    0 0 8px rgba(0,212,255,0.6), 0 0 20px rgba(0,212,255,0.3);
+      --font-heading: 'Orbitron', monospace;
+      --font-mono:    'Share Tech Mono', monospace;
+      --font-body:    'Rajdhani', sans-serif;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--primary); }
+    ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 3px; }
 
     body {
-      font-family: 'Arial', sans-serif;
-      background: var(--background);
+      font-family: var(--font-body);
+      background: var(--primary);
       color: var(--text);
       line-height: 1.6;
-      position: relative;
+      font-size: 1rem;
+      font-weight: 400;
+      overflow-x: hidden;
     }
 
-    .background-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("cyberimage.png");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.1;
-      z-index: -1;
+    /* Matrix canvas */
+    #matrix-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.045;
+      pointer-events: none;
+    }
+
+    /* Scanlines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,255,65,0.012) 2px,
+        rgba(0,255,65,0.012) 4px
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Dot grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,65,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,65,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
+      position: relative;
+      z-index: 2;
     }
 
+    /* ─── NAV ─────────────────────────────────────────── */
     nav {
       position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.9);
+      top: 0; width: 100%;
+      background: rgba(10,10,15,0.93);
       padding: 1rem 0;
       z-index: 1000;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,255,65,0.18);
     }
 
     .nav-content {
@@ -68,36 +110,83 @@
     }
 
     .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
       color: var(--secondary);
       text-decoration: none;
+      letter-spacing: 0.25em;
+      text-shadow: var(--glow);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      transition: all 0.3s ease;
-    }
+    .logo::before { content: '[ '; opacity: 0.5; }
+    .logo::after  { content: ' ]'; opacity: 0.5; }
+
+    .nav-links { display: flex; gap: 2rem; transition: all 0.3s ease; }
 
     .nav-links a {
-      color: var(--text);
+      font-family: var(--font-mono);
+      color: var(--text-dim);
       text-decoration: none;
-      transition: color 0.3s;
-      font-weight: 500;
+      transition: all 0.3s;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
+
+    .nav-links a::before { content: './'; color: var(--secondary); opacity: 0.55; }
 
     .nav-links a:hover {
       color: var(--secondary);
+      text-shadow: var(--glow);
     }
 
+    /* ─── SECTIONS ────────────────────────────────────── */
+    section { padding: 5rem 0; position: relative; z-index: 2; }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-title::before { content: '> '; color: var(--accent); font-family: var(--font-mono); }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; left: 0;
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, var(--secondary), transparent);
+    }
+
+    .terminal-bar {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+      margin-top: 1.75rem;
+      padding: 0.5rem 1rem;
+      background: rgba(0,255,65,0.03);
+      border-left: 2px solid var(--secondary);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── HERO ────────────────────────────────────────── */
     .hero {
       height: 100vh;
       display: flex;
       align-items: center;
+      padding-top: 60px;
+      z-index: 2;
       position: relative;
       overflow: hidden;
-      padding-top: 60px;
     }
 
     .hero-content {
@@ -105,29 +194,159 @@
       align-items: center;
       gap: 4rem;
       padding-top: 2rem;
+      width: 100%;
     }
 
-    .hero-text {
-      flex: 1;
-      padding-top: 2rem;
-      text-align: left;
+    .hero-text { flex: 1; }
+
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 0.75rem;
     }
+
+    .hero-label::before { content: '$ '; color: var(--secondary); }
 
     .hero-text h1 {
-      font-size: 3rem;
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 800;
       margin-bottom: 1rem;
       color: var(--secondary);
+      letter-spacing: 0.04em;
+      text-shadow: var(--glow);
+      line-height: 1.2;
+      position: relative;
+    }
+
+    /* Glitch effect */
+    .hero-text h1.glitch::before,
+    .hero-text h1.glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    .hero-text h1.glitch::before {
+      color: var(--accent);
+      animation: glitch1 4s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    }
+
+    .hero-text h1.glitch::after {
+      color: var(--accent2);
+      animation: glitch2 4s infinite;
+      clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    }
+
+    @keyframes glitch1 {
+      0%,88%,100% { transform: translate(0); opacity: 0; }
+      89% { transform: translate(-3px,1px); opacity: 0.85; }
+      91% { transform: translate(3px,-1px); opacity: 0.85; }
+      93% { transform: translate(-1px); opacity: 0; }
+    }
+
+    @keyframes glitch2 {
+      0%,85%,100% { transform: translate(0); opacity: 0; }
+      86% { transform: translate(3px,1px); opacity: 0.85; }
+      88% { transform: translate(-2px,-1px); opacity: 0.85; }
+      90% { transform: translate(1px); opacity: 0; }
+    }
+
+    .hero-role {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hero-role::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--secondary);
+      border-radius: 50%;
+      box-shadow: var(--glow);
+      animation: blink-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes blink-dot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
     }
 
     .hero-text p {
-      font-size: 1.1rem;
-      opacity: 0.9;
+      font-size: 1.05rem;
+      color: var(--text);
       max-width: 90%;
-      line-height: 1.8;
+      line-height: 1.9;
       margin-top: 1.5rem;
       text-align: justify;
+      font-weight: 300;
     }
 
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary, .btn-secondary {
+      font-family: var(--font-mono);
+      padding: 0.75rem 1.75rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      border: none;
+    }
+
+    .btn-primary {
+      background: transparent;
+      color: var(--secondary);
+      border: 1px solid var(--secondary);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--secondary);
+      transition: left 0.3s;
+      z-index: -1;
+    }
+
+    .btn-primary:hover { color: var(--primary); box-shadow: var(--glow); }
+    .btn-primary:hover::before { left: 0; }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent);
+      color: var(--primary);
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* ─── PROFILE IMAGE ───────────────────────────────── */
     .hero-image {
       flex: 1;
       display: flex;
@@ -135,388 +354,490 @@
       align-items: center;
     }
 
+    .profile-wrapper { position: relative; }
+
     .profile-container {
       width: 300px;
       height: 350px;
       position: relative;
-      border-radius: 0;
-      background: linear-gradient(45deg, var(--secondary), transparent);
+      background: linear-gradient(135deg, rgba(0,255,65,0.07), rgba(0,212,255,0.03));
+      border: 1px solid rgba(0,255,65,0.35);
       padding: 4px;
       overflow: hidden;
       margin-top: 2rem;
+      box-shadow: 0 0 40px rgba(0,255,65,0.08), inset 0 0 40px rgba(0,0,0,0.4);
     }
+
+    .profile-container::before {
+      content: '';
+      position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px solid rgba(0,255,65,0.1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .corner {
+      position: absolute;
+      width: 20px; height: 20px;
+      z-index: 2;
+    }
+
+    .corner-tl { top: 0; left: 0;  border-top: 2px solid var(--secondary); border-left:  2px solid var(--secondary); }
+    .corner-tr { top: 0; right: 0; border-top: 2px solid var(--secondary); border-right: 2px solid var(--secondary); }
+    .corner-bl { bottom: 0; left: 0;  border-bottom: 2px solid var(--secondary); border-left:  2px solid var(--secondary); }
+    .corner-br { bottom: 0; right: 0; border-bottom: 2px solid var(--secondary); border-right: 2px solid var(--secondary); }
 
     .profile-image {
-      width: 100%;
-      height: 100%;
-      border-radius: 0;
+      width: 100%; height: 100%;
       object-fit: contain;
-      background: var(--background);
+      background: var(--primary);
       object-position: center top;
+      filter: grayscale(15%) contrast(1.05);
     }
 
-    .education {
-      margin: 2rem 0;
+    .profile-status {
+      position: absolute;
+      bottom: -1.6rem;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--secondary);
+      letter-spacing: 0.18em;
     }
 
-    .timeline {
-      position: relative;
-      padding: 2rem 0;
+    /* ─── ABOUT ───────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--text);
+      text-align: justify;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stat-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1rem 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .stat-item:hover {
+      border-color: var(--secondary);
+      box-shadow: var(--glow);
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.15rem;
+    }
+
+    /* ─── TIMELINE ────────────────────────────────────── */
+    .timeline { position: relative; padding: 1rem 0; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, var(--secondary), transparent);
     }
 
     .timeline-item {
-      margin-bottom: 2rem;
-      padding-left: 2rem;
-      border-left: 2px solid var(--secondary);
+      margin-bottom: 2.5rem;
+      padding-left: 2.5rem;
       position: relative;
     }
 
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -6px;
-      top: 0;
-      width: 10px;
-      height: 10px;
+      left: -5px; top: 0.4rem;
+      width: 10px; height: 10px;
       background: var(--secondary);
       border-radius: 50%;
+      box-shadow: var(--glow);
     }
 
     .timeline-date {
-      color: var(--secondary);
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-size: 0.78rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
     }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+    .timeline-date::before { content: '['; color: var(--secondary); }
+    .timeline-date::after  { content: ']'; color: var(--secondary); }
+
+    .timeline-item h3 {
+      font-family: var(--font-heading);
+      font-size: 0.98rem;
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
     }
 
-    .project-card {
-      background: rgba(255,255,255,0.05);
-      padding: 2rem;
-      border-radius: 10px;
-      transition: transform 0.3s;
-      border: 1px solid rgba(255,255,255,0.1);
+    .timeline-item p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
     }
 
-    .project-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--secondary);
-    }
-
-    .project-card h3 {
-      color: var(--secondary);
-      margin-bottom: 1rem;
-    }
-
-    .project-links {
-      margin-top: 1rem;
-    }
-
-    .project-links a {
-      color: var(--secondary);
-      text-decoration: none;
-      margin-right: 1rem;
-    }
-
+    /* ─── SERVICES ────────────────────────────────────── */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
     .service-card {
-      background: rgba(255,255,255,0.05);
+      background: var(--card-bg);
       padding: 2rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--secondary);
+      box-shadow: var(--glow);
+    }
+
+    .service-card:hover {
+      border-color: rgba(0,255,65,0.45);
+      background: rgba(0,255,65,0.04);
+      transform: translateX(5px);
+      box-shadow: -5px 0 25px rgba(0,255,65,0.08);
+    }
+
+    .service-icon {
+      font-size: 1.75rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+      text-shadow: var(--glow);
     }
 
     .service-card h3 {
+      font-family: var(--font-heading);
       color: var(--secondary);
       margin-bottom: 1rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
-    .service-card ul {
-      list-style-type: none;
-    }
+    .service-card ul { list-style: none; }
 
     .service-card li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.45rem;
       padding-left: 1.5rem;
       position: relative;
+      font-family: var(--font-mono);
+      font-size: 0.83rem;
+      color: var(--text-dim);
+      transition: color 0.2s;
     }
 
+    .service-card li:hover { color: var(--text); }
+
     .service-card li::before {
-      content: '→';
+      content: '>';
       position: absolute;
       left: 0;
       color: var(--secondary);
     }
 
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-      background: rgba(255,255,255,0.05);
-      padding: 2rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.1);
+    /* ─── PROJECTS ────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
 
-    .form-group {
-      margin-bottom: 1.5rem;
+    .project-card {
+      background: var(--card-bg);
+      padding: 1.75rem;
+      border: 1px solid var(--card-border);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 1rem;
-      background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--text);
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--secondary);
-    }
-
-    button {
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 2px;
       background: var(--secondary);
-      color: var(--primary);
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: opacity 0.3s;
+      transition: width 0.4s;
     }
 
-    button:hover {
-      opacity: 0.9;
+    .project-card:hover::after { width: 100%; }
+
+    .project-card:hover {
+      border-color: rgba(0,255,65,0.4);
+      box-shadow: 0 0 25px rgba(0,255,65,0.07);
+      transform: translateY(-4px);
     }
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
+    .project-number {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.1em;
     }
 
-    .social-links a {
-      color: var(--text);
-      font-size: 1.5rem;
-      transition: color 0.3s;
-    }
-
-    .social-links a:hover {
+    .project-card h3 {
+      font-family: var(--font-heading);
       color: var(--secondary);
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
     }
 
-    footer {
-      background: rgba(0,0,0,0.8);
-      padding: 2rem 0;
-      margin-top: 4rem;
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .project-tech {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      color: var(--accent);
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 0.85rem;
+    }
+
+    .project-links {
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      font-family: var(--font-mono);
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .project-links a:hover { text-shadow: var(--glow); }
+
+    /* ─── CONNECT ─────────────────────────────────────── */
+    .connect-section {
+      padding: 5rem 0;
       text-align: center;
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--card-border);
     }
 
-    .menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
+    .connect-section h2 {
+      font-family: var(--font-heading);
       font-size: 1.5rem;
-      padding: 0.5rem;
-      cursor: pointer;
-    }
-
-    @media (max-width: 1920px) {
-      .container {
-        max-width: 1400px;
-      }
-    }
-
-    @media (max-width: 1536px) {
-      .container {
-        max-width: 1200px;
-      }
-    }
-
-    @media (max-width: 1366px) {
-      .container {
-        max-width: 1000px;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .hero-content {
-        flex-direction: column;
-        gap: 2rem;
-        padding-top: 1rem;
-        text-align: left;
-      }
-
-      .hero-text {
-        padding-top: 0;
-        text-align: left;
-      }
-
-      .hero-text p {
-        max-width: 100%;
-        margin: 1rem 0;
-        text-align: justify;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background: rgba(0,0,0,0.95);
-        padding: 1rem 0;
-        gap: 1rem;
-        text-align: center;
-        transform: translateY(-150%);
-        backdrop-filter: blur(10px);
-      }
-
-      .nav-links.active {
-        transform: translateY(0);
-      }
-
-      .nav-links a {
-        display: block;
-        padding: 0.5rem 0;
-      }
-
-      .menu-btn {
-        display: block;
-      }
-
-      .hero {
-        padding-top: 120px;
-      }
-
-      .profile-container {
-        width: 250px;
-        height: 300px;
-        margin: 2rem auto 0;
-      }
-
-      .timeline-item {
-        padding-left: 1rem;
-      }
-
-      .hero-text h1 {
-        font-size: 2rem;
-        text-align: center;
-      }
-
-      .hero-text {
-        padding-top: 1rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero-text h1 {
-        font-size: 1.5rem;
-      }
-
-      .hero-text p {
-        font-size: 1rem;
-      }
-
-      .profile-container {
-        width: 200px;
-        height: 250px;
-      }
-    }
-
-    @media (max-width: 414px) {
-      .hero-text h1 {
-        font-size: 1.2rem;
-      }
-
-      .hero-text p {
-        font-size: 0.9rem;
-      }
-
-      .profile-container {
-        width: 180px;
-        height: 220px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .hero-text h1 {
-        font-size: 1.2rem;
-      }
-
-      .hero-text p {
-        font-size: 0.9rem;
-      }
-
-      .profile-container {
-        width: 180px;
-        height: 220px;
-      }
-    }
-
-    @media (max-width: 320px) {
-      .hero-text h1 {
-        font-size: 1rem;
-      }
-
-      .hero-text p {
-        font-size: 0.8rem;
-      }
-
-      .profile-container {
-        width: 160px;
-        height: 200px;
-      }
-    }
-
-    #about.container p {
-      text-align: justify;
-      margin: 1rem 0;
-    }
-
-    .contact-section {
-      padding: 4rem 0;
-      background: var(--background);
       color: var(--text);
-      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
     }
 
-    .contact-section h2 {
-      margin-bottom: 2rem;
+    .sub-text {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
     }
 
     .contact-button {
       display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 5px;
-      background: var(--secondary);
-      color: var(--text);
-      font-size: 1rem;
+      padding: 0.9rem 2.5rem;
+      border: 1px solid var(--secondary);
+      background: transparent;
+      color: var(--secondary);
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
       cursor: pointer;
       text-decoration: none;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .contact-button:hover {
-      background: var(--primary);
+    .contact-button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--secondary);
+      transition: left 0.3s;
+      z-index: -1;
+    }
+
+    .contact-button:hover { color: var(--primary); box-shadow: var(--glow); }
+    .contact-button:hover::before { left: 0; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .connect-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      margin-right: 0.5rem;
+    }
+
+    .social-links a {
+      color: var(--text-dim);
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      width: 40px; height: 40px;
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-links a:hover {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      box-shadow: var(--glow);
+      transform: translateY(-3px);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: rgba(0,0,0,0.55);
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+
+    footer span { color: var(--secondary); }
+
+    /* ─── MOBILE NAV ──────────────────────────────────── */
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--card-border);
+      color: var(--secondary);
+      font-size: 1.1rem;
+      padding: 0.4rem 0.7rem;
+      cursor: pointer;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-content { flex-direction: column; gap: 2rem; padding-top: 1rem; }
+      .hero-text p { max-width: 100%; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-stats { flex-direction: row; flex-wrap: wrap; }
+      .stat-item { flex: 1; min-width: 120px; }
+
+      .nav-links {
+        position: fixed;
+        top: 60px; left: 0; width: 100%;
+        flex-direction: column;
+        background: rgba(10,10,15,0.98);
+        padding: 0.5rem 0;
+        gap: 0;
+        text-align: center;
+        transform: translateY(-150%);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      .nav-links.active { transform: translateY(0); }
+
+      .nav-links a {
+        display: block;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      .menu-btn { display: block; }
+      .hero { padding-top: 120px; }
+      .profile-container { width: 250px; height: 300px; margin: 2rem auto 0; }
+      .hero-text h1 { font-size: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 1.6rem; }
+      .hero-text p { font-size: 0.95rem; }
+      .profile-container { width: 200px; height: 250px; }
+      .section-title { font-size: 1.35rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 { font-size: 1.25rem; }
+      .profile-container { width: 180px; height: 220px; }
+      .hero-cta { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; }
     }
   </style>
 </head>
 <body>
-  <div class="background-image"></div>
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- NAV -->
   <nav>
     <div class="container nav-content">
       <a href="#" class="logo">DAK</a>
@@ -534,243 +855,328 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <section id="home" class="hero">
     <div class="container hero-content">
       <div class="hero-text" data-aos="fade-right">
-        <h1>Hi, I'm Deng Ayuen Kur.</h1>
-        <p>A South Sudanese dynamic cybersecurity professional with a strong foundation in software engineering and hands-on experience in network security, web application security, mobile and Digital Forensics. 
-         Aiming to leverage academic expertise and practical training to contribute to innovative cybersecurity solutions and strengthen organizational defenses. Posses a proven ability to adapt quickly to new challenges and environments, underscored by 
-         commitment to continuous learning and professional growth.</p>
+        <span class="hero-label">whoami --verbose</span>
+        <h1 class="glitch" data-text="Hi, I'm Deng Ayuen Kur.">Hi, I'm Deng Ayuen Kur.</h1>
+        <div class="hero-role">Cybersecurity Professional &amp; Researcher</div>
+        <p>A South Sudanese dynamic cybersecurity professional with a strong foundation in software engineering and hands-on experience in network security, web application security, mobile and Digital Forensics. Aiming to leverage academic expertise and practical training to contribute to innovative cybersecurity solutions and strengthen organizational defenses. Possesses a proven ability to adapt quickly to new challenges and environments, underscored by commitment to continuous learning and professional growth.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="#connect" class="btn-secondary">Get In Touch</a>
+        </div>
       </div>
       <div class="hero-image" data-aos="fade-left">
-        <div class="profile-container">
-          <img src="/Photo.jpg" alt="Deng Ayuen Kur" class="profile-image">
+        <div class="profile-wrapper">
+          <div class="profile-container">
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            <img src="/Photo.jpg" alt="Deng Ayuen Kur" class="profile-image">
+          </div>
+          <div class="profile-status">[ STATUS: ONLINE ]</div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about" class="container" data-aos="fade-up">
-    <h2 class="section-title">....</h2>
-    <p>As a Master’s graduate in Cybersecurity from National Forensic Sciences University, Gujarat, India, I combine advanced technical skills with a forward-thinking approach to tackle evolving security threats. I am dedicated to strengthening digital ecosystems through strategic and robust security solutions...</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="terminal-bar">// Identity &amp; Background</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>As a Master's graduate in Cybersecurity from National Forensic Sciences University, Gujarat, India, I combine advanced technical skills with a forward-thinking approach to tackle evolving security threats. I am dedicated to strengthening digital ecosystems through strategic and robust security solutions.</p>
+        <p>My background spans both offensive and defensive security disciplines — from penetration testing and digital forensics to cloud security and mobile application hardening. I bring a methodical, research-driven approach to every engagement.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Years in Tech</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">9+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Degrees</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Skills</div>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- EDUCATION -->
   <section id="education" class="container" data-aos="fade-up">
     <h2 class="section-title">Education</h2>
+    <div class="terminal-bar">// Academic Credentials</div>
     <div class="timeline">
       <div class="timeline-item">
-        <div class="timeline-date">Aug, 2024 - Aug, 2026</div>
+        <div class="timeline-date">Aug 2024 — Aug 2026</div>
         <h3>M.Sc. Cybersecurity</h3>
         <p>National Forensic Sciences University, Gujarat, India</p>
       </div>
       <div class="timeline-item">
-        <div class="timeline-date">Jul, 2019 - Jul, 2023</div>
+        <div class="timeline-date">Jul 2019 — Jul 2023</div>
         <h3>B.Tech, Software Engineering</h3>
         <p>Delhi Technological University, New Delhi, India</p>
       </div>
       <div class="timeline-item">
-        <div class="timeline-date">Jul, 2020 - Jul, 2023</div>
+        <div class="timeline-date">Jul 2020 — Jul 2023</div>
         <h3>Minor in Data Analytics</h3>
         <p>Delhi Technological University, New Delhi, India</p>
       </div>
       <div class="timeline-item">
-        <div class="timeline-date">Feb, 2014 - Feb, 2018</div>
+        <div class="timeline-date">Feb 2014 — Feb 2018</div>
         <h3>Certificate of Secondary Education</h3>
         <p>Bor College High School, Bor, South Sudan</p>
       </div>
       <div class="timeline-item">
-        <div class="timeline-date">Feb, 2005 - Feb, 2013</div>
+        <div class="timeline-date">Feb 2005 — Feb 2013</div>
         <h3>Certificate of Primary Education</h3>
         <p>Langbaar Mixed Primary School, Bor, South Sudan</p>
       </div>
     </div>
   </section>
 
+  <!-- SERVICES -->
   <section id="services" class="container" data-aos="fade-up">
     <h2 class="section-title">Services &amp; Expertise</h2>
+    <div class="terminal-bar">// Core Competencies &amp; Technical Skills</div>
     <div class="services-grid">
       <div class="service-card">
+        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
         <h3>Security</h3>
         <ul>
           <li>Penetration Testing</li>
           <li>Incident Response</li>
           <li>Digital Forensics</li>
           <li>Malware Analysis</li>
-          <li>Cloud Security and Forensics</li>
+          <li>Cloud Security &amp; Forensics</li>
           <li>Web Application Security</li>
           <li>Mobile Security</li>
           <li>Blockchain Security</li>
-          <li>Data Protection, Data Loss Prevention and Recovery</li>
+          <li>Data Protection &amp; Recovery</li>
         </ul>
       </div>
       <div class="service-card">
+        <div class="service-icon"><i class="fas fa-code"></i></div>
         <h3>Programming</h3>
         <ul>
           <li>Python</li>
-          <li>C/C++</li>
+          <li>C / C++</li>
           <li>Bash</li>
           <li>PowerShell</li>
         </ul>
       </div>
       <div class="service-card">
+        <div class="service-icon"><i class="fas fa-network-wired"></i></div>
         <h3>Infrastructure</h3>
         <ul>
           <li>Network Security</li>
           <li>OS Security</li>
           <li>Information Security</li>
           <li>Open Source Intelligence (OSINT)</li>
-          <li>Linux and Windows Security</li>
-          <li>IoT Security and Forensics</li>
-          <li>Risk, Governance and Compliance</li>
-          <li>Tech Consultancy and Corporate Training</li>
+          <li>Linux &amp; Windows Security</li>
+          <li>IoT Security &amp; Forensics</li>
+          <li>Risk, Governance &amp; Compliance</li>
+          <li>Tech Consultancy &amp; Training</li>
         </ul>
       </div>
     </div>
   </section>
 
+  <!-- PROJECTS -->
   <section id="projects" class="container" data-aos="fade-up">
     <h2 class="section-title">Projects</h2>
+    <div class="terminal-bar">// Research, Development &amp; Security Engagements</div>
     <div class="projects-grid">
+
       <div class="project-card">
-        <h3>Car Price Prediction</h3>
-        <p>Developed a predictive model to estimate vehicle prices based on various features such as brand, model, year, mileage, fuel type, transmission and engine capacity. The objective was to build a reliable predictive system that assists buyers and sellers in determining fair market values.</p>
-        <p>Tools/Tech: Python, Flask, NumPy, Pandas</p>
-        <div class="project-links">
-          <a href="https://github.com/dengayuenkur/car-price-prediction">View on GitHub <i class="fab fa-github"></i></a>
-        </div>
-        
-      </div>
-      <div class="project-card">
-        <h3>Dynamic Malware Analysis</h3>
-        <p>Worked on a project which focuses on examining malicious software behavior in a controlled and isolated environment to understand its runtime activities, attack vectors and system impact. The objective was to analyze how malware interacts with operating systems, networks, and processes to identify Indicators of Compromise (IOCs) and improve incident response strategies.</p>
-        <p>Tools/Tech: VMware, Windows & Linux Virtual Machines, Wireshark, Procmon & Process Explorer, TCPView, Regshot, VirusTotal.</p>
-        </div>
-        
-      </div>
-       <div class="projects-grid">
-      <div class="project-card">
-        <h3>Smart Car Parking System</h3>
-        <p>Developed an intelligent, IoT-based solution designed to optimize parking space management and reduce traffic congestion in urban areas. The system leverages embedded systems, sensors and real-time data processing to monitor parking slot availability and provide instant updates to users.</p>
-        <p>Tools/Tech:Microcontroller (ESP8266), Ultrasonic / IR Sensors, Wi-Fi Communication, Web Application, Firebase Database.</p>
-        <div class="project-links">
-          <a href="https://github.com/dengayuenkur/car-price-prediction">View on GitHub <i class="fab fa-github"></i></a>
-        </div>
-        
-      </div>
-       <div class="projects-grid">
-      <div class="project-card">
-        <h3>Acquisition of Cloud-Based Artefacts</h3>
-        <p>Worked on a project which focuses on the systematic identification, collection, preservation, and analysis of digital evidence stored in cloud environments. This focussed on a structured forensic approach for acquiring volatile and non-volatile artefacts from cloud service providers while maintaining data integrity and legal admissibility.</p>
-        <p>Tools/Tech: AWS, Autopsy, FTK, Volatility, Hashing Algorithms (SHA-256 / MD5)</p>
-        
-        
-      </div>
-       <div class="projects-grid">
-      <div class="project-card">
-        <h3>VoIP Network Forensics</h3>
-        <p>Worked on a project which focuses on investigating, analyzing, and securing Voice over IP (VoIP) communications by identifying malicious activities, vulnerabilities, and attack patterns within VoIP infrastructures. The project emphasizes digital forensic methodologies to detect fraud, eavesdropping, SIP-based attacks, and call manipulation in real-world VoIP environments.</p>
-        <p>Tools/Tech: Asterisk, FreePBX (VoIP server), Wireshark & tcpdump, Zoiper, Debian.</p>
- 
-      </div>
-    
-      <div class="project-card">
+        <div class="project-number">01 / security-assessment</div>
         <h3>Security Assessment Traffic Light System</h3>
-        <p>Developed a system that automates the aggregation and risk evaluation of security vulnerabilities from multiple sources, including Jira, OWASP Dependency Track, Burp Suite, CodeQL, and GitHub Dependabot. It provides a visual "traffic light" status (GREEN, ORANGE, RED) to indicate the safety of a software release based on predefined risk criteria</p>
-        <p>Tools/Tech: Streamlit, pandas, requests, matplotlib, xmltodict, jira, sarif_om, reportlab</p>
+        <p>Automates aggregation and risk evaluation of security vulnerabilities from Jira, OWASP Dependency Track, Burp Suite, CodeQL, and GitHub Dependabot. Provides a visual traffic-light status (GREEN / ORANGE / RED) to indicate release safety based on predefined risk criteria.</p>
+        <div class="project-tech">Streamlit · pandas · requests · matplotlib · xmltodict · jira · sarif_om · reportlab</div>
         <div class="project-links">
-          <a href="https://github.com/dengayuenkur/assessment_system">View on GitHub <i class="fab fa-github"></i></a>
+          <a href="https://github.com/dengayuenkur/assessment_system" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         </div>
-        
-      </div>
-      <div class="project-card">
-        <h3>OpenSSL Secure Server</h3>
-        <p>Worked on a project involves the development of a secure client-server application using the OpenSSL library to establish encrypted communication channels. The server securely transmits real-time system information (current day and time) to connected clients over an SSL/TLS encrypted connection.</p>
-        <p>Tools/Tech: OpenSSL, Bash, Linux</p>
-        <div class="project-links">
-          <a href="https://github.com/dengayuenkur/openssl-server">View on GitHub <i class="fab fa-github"></i></a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3>Student Database Management System</h3>
-        <p>Developed a comprehensive application to efficiently store, manage and secure student information. The system enables authorized users to perform operations such as adding, updating, retrieving, and deleting student records while ensuring data integrity and confidentiality through built-in security mechanisms.</p>
-        <p>Tools/Tech: C++, MySQL</p>
       </div>
 
       <div class="project-card">
+        <div class="project-number">02 / malware-analysis</div>
+        <h3>Dynamic Malware Analysis</h3>
+        <p>Examines malicious software behavior in a controlled, isolated environment to understand runtime activities, attack vectors, and system impact. Identifies Indicators of Compromise (IOCs) and improves incident response strategies.</p>
+        <div class="project-tech">VMware · Wireshark · Procmon · Process Explorer · TCPView · Regshot · VirusTotal</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">03 / cloud-forensics</div>
+        <h3>Acquisition of Cloud-Based Artefacts</h3>
+        <p>Systematic identification, collection, preservation, and analysis of digital evidence stored in cloud environments. Structured forensic approach for acquiring volatile and non-volatile artefacts while maintaining data integrity and legal admissibility.</p>
+        <div class="project-tech">AWS · Autopsy · FTK · Volatility · SHA-256 / MD5</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">04 / voip-forensics</div>
+        <h3>VoIP Network Forensics</h3>
+        <p>Investigates and secures Voice over IP communications by identifying malicious activities, vulnerabilities, and attack patterns. Detects fraud, eavesdropping, SIP-based attacks, and call manipulation in real-world VoIP environments.</p>
+        <div class="project-tech">Asterisk · FreePBX · Wireshark · tcpdump · Zoiper · Debian</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">05 / phishing-detection</div>
         <h3>Phishing URL Detection</h3>
-        <p>Created a machine learning–based system to identify and classify malicious URLs used in phishing attacks. The goal was to enhance cybersecurity defenses by automatically detecting fraudulent websites before users interact with them.</p>
-        <p>Tools/Tech: Python, Scikit-learn</p>
+        <p>Machine learning–based system to identify and classify malicious URLs used in phishing attacks. Enhances cybersecurity defenses by automatically detecting fraudulent websites before users interact with them.</p>
+        <div class="project-tech">Python · Scikit-learn</div>
         <div class="project-links">
-          <a href="https://github.com/dengayuenkur/phishing-detection">View on GitHub <i class="fab fa-github"></i></a>
+          <a href="https://github.com/dengayuenkur/phishing-detection" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         </div>
       </div>
+
+      <div class="project-card">
+        <div class="project-number">06 / openssl-server</div>
+        <h3>OpenSSL Secure Server</h3>
+        <p>Secure client-server application using OpenSSL to establish encrypted communication channels. The server transmits real-time system information to connected clients over an SSL/TLS encrypted connection.</p>
+        <div class="project-tech">OpenSSL · Bash · Linux</div>
+        <div class="project-links">
+          <a href="https://github.com/dengayuenkur/openssl-server" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">07 / iot-smart-parking</div>
+        <h3>Smart Car Parking System</h3>
+        <p>Intelligent, IoT-based solution to optimize parking space management and reduce traffic congestion in urban areas. Leverages embedded systems, sensors, and real-time data processing to monitor slot availability and provide instant updates to users.</p>
+        <div class="project-tech">ESP8266 · Ultrasonic/IR Sensors · Wi-Fi · Firebase · Web App</div>
+        <div class="project-links">
+          <a href="https://github.com/dengayuenkur/car-price-prediction" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">08 / ml-car-price</div>
+        <h3>Car Price Prediction</h3>
+        <p>Predictive model to estimate vehicle prices based on brand, model, year, mileage, fuel type, transmission, and engine capacity. Assists buyers and sellers in determining fair market values.</p>
+        <div class="project-tech">Python · Flask · NumPy · Pandas</div>
+        <div class="project-links">
+          <a href="https://github.com/dengayuenkur/car-price-prediction" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-number">09 / student-dbms</div>
+        <h3>Student Database Management System</h3>
+        <p>Comprehensive application to store, manage, and secure student information. Enables authorized users to perform CRUD operations while ensuring data integrity and confidentiality through built-in security mechanisms.</p>
+        <div class="project-tech">C++ · MySQL</div>
+      </div>
+
     </div>
   </section>
 
+  <!-- CONNECT -->
   <section id="connect" class="connect-section">
     <div class="container">
-      <h2>Ready to collaborate and  make things secure?</h2>
-      <a href="mailto:dengayuen2018@gmail.com" class="contact-button">Click to request a Service Now</a>
+      <h2>Ready to collaborate and make things secure?</h2>
+      <p class="sub-text">// Reach out for consultancy, collaboration, or training engagements</p>
+      <a href="mailto:dengayuen2018@gmail.com" class="contact-button">Request a Service</a>
       <div class="social-links">
-        <p>Connect on</p>
-        <a href="https://github.com/dengayuenkur" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/dengayuenkur" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.x.com/dengayuenkur" target="_blank"><i class="fab fa-x"></i></a>
-        <a href="https://www.instagram.com/dengayuenkur" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/iamdengayuenkur" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <span class="connect-label">Connect on //</span>
+        <a href="https://github.com/dengayuenkur" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/dengayuenkur" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.x.com/dengayuenkur" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com/dengayuenkur" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/iamdengayuenkur" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p> ©2018-2026 DAK. All rights reserved.</p>
-      
-      <p> Built by Deng Ayuen Kur.</p>
+      <p><span>&copy;</span> 2018&ndash;2026 <span>DAK</span>. All rights reserved. &nbsp;|&nbsp; Built by <span>Deng Ayuen Kur</span></p>
     </div>
   </footer>
 
-  <script>AOS.init({
-  duration: 1000,
-  once: true,
-  offset: 100
-});
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
+  <script>
+    // ── Matrix Rain ──────────────────────────────────────
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
 
-const menuBtn = document.querySelector('.menu-btn');
-const navLinks = document.querySelector('.nav-links');
-menuBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  if (navLinks.classList.contains('active')) {
-    menuBtn.innerHTML = '<i class="fas fa-times"></i>';
-  } else {
-    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-  }
-});
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-  });
-});
-document.addEventListener('click', e => {
-  if (!e.target.closest('.nav-content')) {
-    navLinks.classList.remove('active');
-    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-  }
-});
-document.querySelector('.contact-form').addEventListener('submit', function (e) {
-  // e.preventDefault(); // Remove this line to allow form submission
-  alert('Thank you for your message! I will get back to you soon.');
-  this.reset();
-});
-</script>
+    function resizeCanvas() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/\\|アイウエオカキクケコサシスセソタチツテトナニヌネノ';
+    const fontSize = 13;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = Array(columns).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00ff41';
+      ctx.font = fontSize + 'px "Share Tech Mono", monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 55);
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      columns = Math.floor(canvas.width / fontSize);
+      drops = Array(columns).fill(1);
+    });
+
+    // ── AOS ──────────────────────────────────────────────
+    AOS.init({ duration: 800, once: true, offset: 80 });
+
+    // ── Smooth scroll ────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ── Mobile nav ───────────────────────────────────────
+    const menuBtn  = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuBtn.innerHTML = navLinks.classList.contains('active')
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.nav-content')) {
+        navLinks.classList.remove('active');
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      }
+    });
+  </script>
 </body>
 </html>
