@@ -354,11 +354,11 @@
       align-items: center;
     }
 
-    .profile-wrapper { position: relative; }
+    .profile-wrapper { position: relative; padding-bottom: 2rem; }
 
     .profile-container {
-      width: 300px;
-      height: 350px;
+      width: 280px;
+      height: 280px;
       position: relative;
       background: linear-gradient(135deg, rgba(0,255,65,0.07), rgba(0,212,255,0.03));
       border: 1px solid rgba(0,255,65,0.35);
@@ -390,9 +390,8 @@
 
     .profile-image {
       width: 100%; height: 100%;
-      object-fit: contain;
-      background: var(--primary);
-      object-position: center top;
+      object-fit: cover;
+      object-position: center 10%;
       filter: grayscale(15%) contrast(1.05);
     }
 
@@ -834,7 +833,7 @@
       .hero-role { justify-content: center; }
       .hero-cta { justify-content: center; }
       .hero-text h1 { font-size: 2.1rem; }
-      .profile-container { width: 240px; height: 290px; margin: 0 auto; }
+      .profile-container { width: 240px; height: 240px; margin: 0 auto; }
 
       /* About */
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -853,7 +852,7 @@
       .section-title { font-size: 1.3rem; }
       .connect-section h2 { font-size: 1.2rem; }
 
-      .profile-container { width: 200px; height: 250px; }
+      .profile-container { width: 200px; height: 200px; }
       .profile-status { font-size: 0.6rem; }
 
       /* Force single-column grids */
@@ -883,7 +882,7 @@
       .hero-cta { flex-direction: column; align-items: stretch; gap: 0.75rem; }
       .btn-primary, .btn-secondary { text-align: center; padding: 0.75rem 1.25rem; font-size: 0.8rem; }
 
-      .profile-container { width: 175px; height: 215px; }
+      .profile-container { width: 175px; height: 175px; }
 
       .section-title { font-size: 1.1rem; letter-spacing: 0.06em; }
       .terminal-bar { font-size: 0.7rem; padding: 0.4rem 0.75rem; margin-top: 1.25rem; margin-bottom: 2rem; }
@@ -914,7 +913,7 @@
       .container { padding: 0 0.875rem; }
 
       .hero-text h1 { font-size: 1.15rem; }
-      .profile-container { width: 155px; height: 190px; }
+      .profile-container { width: 155px; height: 155px; }
 
       .section-title { font-size: 1rem; }
       .stat-number { font-size: 1.3rem; }
@@ -933,7 +932,7 @@
 
       .logo { font-size: 0.95rem; }
       .hero-text h1 { font-size: 1rem; }
-      .profile-container { width: 135px; height: 165px; }
+      .profile-container { width: 135px; height: 135px; }
       .hero-text p { font-size: 0.82rem; }
 
       .about-stats { grid-template-columns: 1fr 1fr; }
@@ -971,7 +970,7 @@
     <div class="container hero-content">
       <div class="hero-text" data-aos="fade-right">
         <span class="hero-label">whoami --verbose</span>
-        <h1 class="glitch" data-text="Hi, I'm Deng Ayuen Kur.">Hi, I'm Deng Ayuen Kur.</h1>
+        <h1 class="glitch" data-text="Deng Ayuen Kur.">Deng Ayuen Kur.</h1>
         <div class="hero-role">Cybersecurity Professional &amp; Researcher</div>
         <p>A South Sudanese dynamic cybersecurity professional with a strong foundation in software engineering and hands-on experience in network security, web application security, mobile and Digital Forensics. Aiming to leverage academic expertise and practical training to contribute to innovative cybersecurity solutions and strengthen organizational defenses. Possesses a proven ability to adapt quickly to new challenges and environments, underscored by commitment to continuous learning and professional growth.</p>
         <div class="hero-cta">
